@@ -2,10 +2,10 @@
 /*
 1. type nul > index.js - to create new file.
 2. .clear - Alias for .break
-3. exit - exit the RZEPL
+3. .exit - exit the RZEPL
 4. .load - Load JS from a file into the REPL session
 5. .editor - Enter editor mode
-6..break - Sometimes you get stuck, this gets you out
+6. .break - Sometimes you get stuck, this gets you out
 7. .save Save all evaluated commands in this REPL session to a file
 8. dir - all files show
 9. node -v - show nodejs version
