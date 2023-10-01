@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quotes Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        #quote-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        #quote-text {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        #author {
+            font-size: 18px;
+            font-style: italic;
+        }
+
+        #new-quote-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #new-quote-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Popup Styling */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        /* FontAwesome Icon Styling */
+        .fa-quote-left {
+            font-size: 36px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="quote-container">
+        <i class="fas fa-quote-left"></i>
+        <p id="quote-text">"This is a random quote."</p>
+        <p id="author">- Author</p>
+        <button id="new-quote-button">New Quote</button>
+    </div>
+
+    <!-- Popup -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close-button" id="close-popup">&times;</span>
+            <h2>Quote Copied</h2>
+        </div>
+    </div>
+
+    <script>
+        const quotes = [
+            {
+                text: "The only way to do great work is to love what you do.",
+                author: "Steve Jobs"
+            },
+            {
+                text: "In three words I can sum up everything I've learned about life: it goes on.",
+                author: "Robert Frost"
+            },
+            {
+                text: "Life is really simple, but we insist on making it complicated.",
+                author: "Confucius"
+            },
+            {
+                text: "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+                author: "Winston Churchill"
+            },
+            {
+                text: "The only limit to our realization of tomorrow will be our doubts of today.",
+                author: "Franklin D. Roosevelt"
+            }
+        ];
+
+        const quoteText = document.getElementById('quote-text');
+        const author = document.getElementById('author');
+        const newQuoteButton = document.getElementById('new-quote-button');
+        const popup = document.getElementById('popup');
+        const closePopup = document.getElementById('close-popup');
+
+        function getRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            return quotes[randomIndex];
+        }
+
+        function displayRandomQuote() {
+            const randomQuote = getRandomQuote();
+            quoteText.textContent = `"${randomQuote.text}"`;
+            author.textContent = `- ${randomQuote.author}`;
+        }
+
+        newQuoteButton.addEventListener('click', displayRandomQuote);
+
+        // Copy the quote to clipboard when the quote text is clicked
+        quoteText.addEventListener('click', () => {
+            const textArea = document.createElement('textarea');
+            textArea.value = `${quoteText.textContent} ${author.textContent}`;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+
+            // Show the popup
+            popup.style.display = 'flex';
+        });
+
+        // Close the popup when the close button is clicked
+        closePopup.addEventListener('click', () => {
+            popup.style.display = 'none';
+        });
+
+        // Display an initial random quote when the page loads
+        displayRandomQuote();
+    </script>
+</body>
+</html>
