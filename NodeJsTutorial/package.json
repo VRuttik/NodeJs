@@ -1,0 +1,19 @@
+{
+  "name": "vruttik",
+  "version": "1.0.0",
+  "description": "Its an amazing package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "VRuttik",
+  "license": "ISC",
+  "dependencies": {
+    "@angular/cli": "^16.2.3",
+    "express": "^4.18.2",
+    "nodemailer": "^6.9.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
